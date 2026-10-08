@@ -1,0 +1,841 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  background: #f5f6f8;
+  color: #17181a;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.app-header {
+  background: #111214;
+  color: white;
+
+  padding: 24px 32px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 20px;
+}
+
+.header-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.header-title h1 {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.15;
+}
+
+.header-subtitle {
+  margin-top: 6px;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.back-button {
+  border: 0;
+  background: transparent;
+
+  color: white;
+
+  font-weight: 700;
+  font-size: 15px;
+
+  padding: 8px 0;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.primary-button {
+  border: 0;
+  border-radius: 12px;
+
+  background: #ff3b30;
+  color: white;
+
+  font-weight: 700;
+
+  padding: 13px 18px;
+
+  transition: 0.2s;
+}
+
+.primary-button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.secondary-button {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+
+  background: white;
+  color: #333;
+
+  font-weight: 700;
+
+  padding: 12px 16px;
+}
+
+.delete-race-button {
+  border: 1px solid #ff3b30;
+  border-radius: 10px;
+
+  background: transparent;
+  color: #ff3b30;
+
+  font-weight: 700;
+
+  padding: 10px 14px;
+
+  white-space: nowrap;
+}
+
+.delete-race-button:hover {
+  background: #ff3b30;
+  color: white;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.content {
+  width: min(1100px, calc(100% - 32px));
+
+  margin: 28px auto 40px;
+}
+
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
+
+.summary-card {
+  background: white;
+
+  border-radius: 16px;
+
+  padding: 20px;
+
+  margin-bottom: 22px;
+
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.summary-line {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 8px;
+}
+
+.summary-line strong {
+  font-size: 17px;
+}
+
+.summary-line span {
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.progress-bar {
+  width: 100%;
+
+  height: 9px;
+
+  background: #e5e5e5;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  margin-bottom: 18px;
+}
+
+.progress-fill {
+  height: 100%;
+
+  border-radius: 10px;
+
+  transition:
+    width 0.25s ease;
+}
+
+.progress-fill.prepared {
+  background: #27ae60;
+}
+
+.progress-fill.loaded {
+  background: #2878d7;
+}
+
+
+/* =========================================================
+   LISTA GARE
+   ========================================================= */
+
+.races-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+.race-card {
+  width: 100%;
+
+  border: 0;
+
+  color: #17181a;
+
+  text-align: left;
+
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 22px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.04);
+
+  transition: 0.2s;
+}
+
+.race-card:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+.race-card-top {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 16px;
+}
+
+.race-card h2 {
+  margin: 0 0 8px;
+
+  font-size: 22px;
+}
+
+.race-location,
+.race-date {
+  color: #666;
+
+  font-size: 14px;
+
+  margin-top: 4px;
+}
+
+.race-progress-label {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 5px;
+}
+
+.race-progress-label span {
+  color: #777;
+
+  font-size: 13px;
+}
+
+.race-progress-label strong {
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   SISTEMA ATTIVO / PASSIVO
+   ========================================================= */
+
+.system-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  width: fit-content;
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+.system-attivo {
+  background: #e8f7ed;
+
+  color: #16803c;
+
+  border: 1px solid #b7e4c7;
+}
+
+.system-passivo {
+  background: #eef3ff;
+
+  color: #315dcc;
+
+  border: 1px solid #c9d5ff;
+}
+
+
+/* =========================================================
+   CHECKLIST
+   ========================================================= */
+
+.checklist {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.checklist-group {
+  background: white;
+
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.checklist-group h2 {
+  margin: 0;
+
+  padding: 16px 20px;
+
+  background: #111214;
+
+  color: white;
+
+  font-size: 16px;
+}
+
+.items {
+  display: flex;
+
+  flex-direction: column;
+}
+
+
+/* =========================================================
+   RIGA MATERIALE
+
+   SINISTRA = TICK
+   CENTRO   = ITEM
+   DESTRA   = QUANTITÀ
+   ========================================================= */
+
+.checklist-item {
+  min-height: 60px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 9px 15px;
+
+  border-bottom: 1px solid #eeeeee;
+
+  background: white;
+}
+
+.checklist-item:last-child {
+  border-bottom: 0;
+}
+
+
+/* =========================================================
+   TICK
+   ========================================================= */
+
+.check-button {
+  width: 34px;
+  height: 34px;
+
+  flex: 0 0 34px;
+
+  border: 2px solid #c8c8c8;
+
+  border-radius: 8px;
+
+  background: #f1f1f1;
+
+  color: #777;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 17px;
+
+  font-weight: 800;
+
+  padding: 0;
+
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    transform 0.1s;
+}
+
+.check-button:hover {
+  transform: scale(1.04);
+}
+
+.check-button:active {
+  transform: scale(0.96);
+}
+
+
+/* =========================================================
+   DA PREPARARE
+   ========================================================= */
+
+.check-button.status-da_preparare {
+  background: #f1f1f1;
+
+  border-color: #c8c8c8;
+
+  color: #777;
+}
+
+
+/* =========================================================
+   PREPARATO
+   ========================================================= */
+
+.check-button.status-preparato {
+  background: #27ae60;
+
+  border-color: #27ae60;
+
+  color: white;
+}
+
+
+/* =========================================================
+   CARICATO
+   ========================================================= */
+
+.check-button.status-caricato {
+  background: #2878d7;
+
+  border-color: #2878d7;
+
+  color: white;
+}
+
+
+/* =========================================================
+   ITEM AL CENTRO
+   ========================================================= */
+
+.item-name {
+  flex: 1;
+
+  min-width: 0;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  color: #17181a;
+}
+
+
+/* =========================================================
+   QUANTITÀ A DESTRA
+   ========================================================= */
+
+.quantity-control {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  flex: 0 0 auto;
+}
+
+.quantity-control button {
+  width: 34px;
+  height: 34px;
+
+  border: 1px solid #c8c8c8;
+
+  border-radius: 8px;
+
+  background: #e9e9e9;
+
+  color: #111214;
+
+  font-size: 21px;
+
+  font-weight: 700;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+}
+
+.quantity-control button:hover {
+  background: #dcdcdc;
+}
+
+.quantity-control button:active {
+  background: #cccccc;
+}
+
+.quantity-control strong {
+  min-width: 24px;
+
+  text-align: center;
+
+  color: #17181a;
+
+  font-size: 16px;
+}
+
+
+/* =========================================================
+   COLORE DELLA RIGA IN BASE ALLO STATO
+   ========================================================= */
+
+.checklist-item:has(
+  .status-preparato
+) {
+  background: #f5fff8;
+}
+
+.checklist-item:has(
+  .status-caricato
+) {
+  background: #f4f8ff;
+}
+
+
+/* =========================================================
+   NOTE
+   ========================================================= */
+
+.notes-card {
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 20px;
+
+  margin-top: 18px;
+
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.notes-card h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  color: #17181a;
+}
+
+.notes-card textarea {
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+
+  box-sizing: border-box;
+
+  border: 1px solid #ddd;
+  border-radius: 12px;
+
+  padding: 13px;
+
+  font: inherit;
+  color: #17181a;
+  background: #ffffff;
+
+  outline: none;
+}
+
+.notes-card textarea::placeholder {
+  color: #888;
+}
+
+.notes-card textarea:focus {
+  color: #17181a;
+  background: #ffffff;
+  outline: 2px solid #8ecfff;
+  outline-offset: 0;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.empty-state {
+  background: white;
+
+  border-radius: 20px;
+
+  padding: 70px 25px;
+
+  text-align: center;
+
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.empty-icon {
+  font-size: 50px;
+
+  margin-bottom: 10px;
+}
+
+.empty-state h2 {
+  margin: 5px 0 10px;
+}
+
+.empty-state p {
+  color: #666;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   MODALE
+   ========================================================= */
+
+.modal-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  z-index: 10;
+}
+
+.modal {
+  position: relative;
+
+  width: min(500px, 100%);
+
+  background: white;
+
+  color: #17181a;
+
+  border-radius: 22px;
+
+  padding: 30px;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.modal-header {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  color: #000;
+  margin: 0;
+
+  font-size: 27px;
+}
+
+.modal-close {
+  border: 0;
+
+  background: transparent;
+
+  font-size: 30px;
+
+  color: #777;
+
+  padding: 0;
+}
+
+.modal label {
+  display: block;
+
+  margin-bottom: 18px;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.modal input,
+.modal select {
+  width: 100%;
+
+  display: block;
+
+  margin-top: 7px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 10px;
+
+  padding: 13px;
+
+  background: white;
+
+  color: #17181a;
+}
+
+.modal-actions {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 10px;
+}
+
+.modal-actions button {
+  flex: 1;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .app-header {
+    padding: 20px 16px;
+
+    align-items: flex-start;
+  }
+
+  .header-title h1 {
+    font-size: 24px;
+  }
+
+  .content {
+    width: calc(100% - 20px);
+
+    margin: 20px auto;
+  }
+
+  .race-card-top {
+    flex-direction: column;
+  }
+
+  .delete-race-button {
+    width: 100%;
+  }
+
+  .checklist-item {
+    gap: 10px;
+
+    padding: 9px 10px;
+  }
+
+  .check-button {
+    width: 32px;
+    height: 32px;
+
+    flex-basis: 32px;
+  }
+
+  .item-name {
+    font-size: 14px;
+  }
+
+  .quantity-control {
+    gap: 4px;
+  }
+
+  .quantity-control button {
+    width: 30px;
+    height: 30px;
+  }
+
+  .quantity-control strong {
+    min-width: 20px;
+  }
+
+  .modal {
+    padding: 24px 18px;
+  }
+}
